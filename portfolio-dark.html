@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pranshu Upadhyay — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-void:#0A0E14;
+  --bg-void-2:#0D1220;
+  --bg-panel: rgba(255,255,255,0.045);
+  --bg-panel-hover: rgba(255,255,255,0.07);
+  --border-glass: rgba(255,255,255,0.09);
+  --border-glass-strong: rgba(255,255,255,0.16);
+  --accent-cyan:#22D3EE;
+  --accent-violet:#7C6CF5;
+  --accent-amber:#F5B942;
+  --text-primary:#EAF0F5;
+  --text-muted:#8B98A5;
+  --text-faint:#5C6773;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(124,108,245,0.14), transparent 60%),
+    radial-gradient(1000px 500px at 85% 10%, rgba(34,211,238,0.10), transparent 60%),
+    var(--bg-void);
+  color:var(--text-primary);
+  font-family:'Inter', sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk', sans-serif;letter-spacing:-0.01em;}
+.mono{font-family:'JetBrains Mono', monospace;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+section{padding:96px 0;position:relative;}
+.eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent-cyan);
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent-cyan);opacity:0.6;}
+.section-title{font-size:clamp(28px,3.6vw,40px);font-weight:600;margin-bottom:14px;}
+.section-sub{color:var(--text-muted);max-width:640px;margin-bottom:48px;font-size:15.5px;}
+.glass{
+  background:var(--bg-panel);
+  border:1px solid var(--border-glass);
+  border-radius:var(--radius);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  *{scroll-behavior:auto !important;animation:none !important;}
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(10,14,20,0.55);
+  border-bottom:1px solid var(--border-glass);
+}
+.nav-inner{max-width:1120px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Space Grotesk';font-weight:600;font-size:17px;}
+.logo span{color:var(--accent-cyan);}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-muted);}
+.nav-links a:hover{color:var(--text-primary);}
+@media(max-width:720px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{padding:180px 0 120px;position:relative;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono';font-size:12px;color:var(--accent-amber);
+  border:1px solid rgba(245,185,66,0.3);background:rgba(245,185,66,0.06);
+  padding:6px 14px;border-radius:999px;margin-bottom:28px;
+}
+.hero h1{font-size:clamp(38px,6vw,64px);font-weight:700;line-height:1.05;margin-bottom:20px;}
+.hero h1 .grad{
+  background:linear-gradient(100deg,var(--accent-cyan),var(--accent-violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-role{font-size:19px;color:var(--text-muted);margin-bottom:8px;}
+.hero-edu{font-size:14px;color:var(--text-faint);margin-bottom:28px;}
+.hero-intro{max-width:600px;color:var(--text-muted);font-size:15.5px;margin-bottom:38px;}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;}
+.btn{
+  padding:12px 22px;border-radius:10px;font-size:14px;font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;transition:all 0.25s ease;
+}
+.btn-primary{background:linear-gradient(100deg,var(--accent-cyan),var(--accent-violet));color:#04070C;}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.btn-ghost{border:1px solid var(--border-glass-strong);color:var(--text-primary);}
+.btn-ghost:hover{background:var(--bg-panel-hover);border-color:var(--accent-cyan);}
+
+/* PIPELINE SIGNATURE */
+.pipeline{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.pipeline-connector{
+  position:absolute;top:50%;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet));
+  opacity:0.25;z-index:0;transform:translateY(-50%);
+}
+@media(max-width:820px){.pipeline{grid-template-columns:1fr;gap:16px;}.pipeline-connector{display:none;}}
+.pipe-card{
+  position:relative;z-index:1;padding:26px 22px;margin:0 10px;
+  transition:border-color 0.3s ease, background 0.3s ease;
+}
+.pipe-card .layer-tag{font-family:'JetBrains Mono';font-size:11px;color:var(--accent-cyan);letter-spacing:0.08em;margin-bottom:10px;}
+.pipe-card h4{font-size:16px;margin-bottom:8px;}
+.pipe-card p{font-size:13px;color:var(--text-muted);}
+.pipe-card.active{border-color:var(--accent-cyan);background:rgba(34,211,238,0.05);}
+.pipe-card:nth-child(2) .layer-tag{color:#A78BFA;}
+.pipe-card:nth-child(3) .layer-tag{color:var(--accent-violet);}
+.pipe-card:nth-child(2).active{border-color:#A78BFA;background:rgba(167,139,250,0.05);}
+.pipe-card:nth-child(3).active{border-color:var(--accent-violet);background:rgba(124,108,245,0.06);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+.about-text p{color:var(--text-muted);margin-bottom:16px;font-size:15.5px;}
+.focus-tags{display:flex;flex-wrap:wrap;gap:10px;}
+.focus-tag{
+  font-family:'JetBrains Mono';font-size:12px;padding:8px 14px;border-radius:8px;
+  border:1px solid var(--border-glass);color:var(--text-muted);
+}
+.about-stats{display:grid;gap:14px;}
+.stat-card{padding:20px;}
+.stat-num{font-size:28px;font-weight:700;font-family:'Space Grotesk';}
+.stat-label{font-size:12.5px;color:var(--text-muted);margin-top:4px;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+.skill-card{padding:22px;}
+.skill-card h4{font-size:14px;margin-bottom:12px;color:var(--accent-cyan);}
+.skill-list{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-pill{font-size:12.5px;padding:5px 11px;border-radius:7px;background:rgba(255,255,255,0.05);color:var(--text-muted);}
+
+/* EXPERIENCE */
+.exp-item{padding:26px 28px;margin-bottom:18px;}
+.exp-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+.exp-title{font-size:17px;font-weight:600;}
+.exp-date{font-family:'JetBrains Mono';font-size:12px;color:var(--text-faint);}
+.exp-item ul{margin-top:12px;padding-left:20px;color:var(--text-muted);font-size:14.5px;}
+.exp-item li{margin-bottom:6px;}
+
+/* PROJECTS */
+.rank-row{display:flex;align-items:center;gap:10px;margin:36px 0 18px;}
+.rank-row:first-of-type{margin-top:0;}
+.rank-stars{color:var(--accent-amber);font-size:14px;letter-spacing:2px;}
+.rank-label{font-family:'JetBrains Mono';font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.1em;}
+.projects-list{display:flex;flex-direction:column;gap:16px;margin-bottom:8px;}
+.proj-card{padding:0;overflow:hidden;transition:border-color 0.3s ease;}
+.proj-card:hover{border-color:var(--border-glass-strong);}
+.proj-head{display:flex;align-items:center;gap:20px;padding:22px 26px;cursor:pointer;}
+.proj-banner-sm{width:64px;height:64px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg, rgba(34,211,238,0.16), rgba(124,108,245,0.16));display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;color:var(--accent-cyan);font-size:20px;}
+.proj-head-text{flex:1;min-width:0;}
+.proj-head-text h4{font-size:17px;margin-bottom:5px;}
+.proj-head-text p{font-size:13.5px;color:var(--text-muted);}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.proj-tag{font-size:11px;padding:4px 9px;border-radius:6px;background:rgba(255,255,255,0.05);color:var(--text-faint);font-family:'JetBrains Mono';}
+.proj-chevron{flex-shrink:0;font-size:18px;color:var(--text-faint);transition:transform 0.3s ease;}
+.proj-card.open .proj-chevron{transform:rotate(180deg);color:var(--accent-cyan);}
+.proj-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.proj-card.open .proj-body{max-height:900px;}
+.proj-body-inner{padding:0 26px 28px;border-top:1px solid var(--border-glass);margin-top:0;}
+.case-section{margin-top:18px;}
+.case-section h5{font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent-cyan);margin-bottom:6px;font-family:'JetBrains Mono';}
+.case-section p, .case-section ul{font-size:14px;color:var(--text-muted);}
+.case-section ul{padding-left:18px;}
+.proj-link{font-size:13px;color:var(--accent-cyan);}
+
+/* GITHUB / LEETCODE */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.gh-card{padding:24px;text-align:center;}
+.gh-num{font-size:32px;font-weight:700;font-family:'Space Grotesk';background:linear-gradient(100deg,var(--accent-cyan),var(--accent-violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.gh-label{font-size:12.5px;color:var(--text-muted);margin-top:6px;}
+.tag-bar{margin-top:10px;}
+.tag-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border-glass);color:var(--text-muted);}
+.tag-row span:last-child{font-family:'JetBrains Mono';color:var(--text-primary);}
+
+/* EDUCATION */
+.edu-item{display:flex;gap:20px;padding:24px;margin-bottom:14px;}
+.edu-icon{width:44px;height:44px;border-radius:10px;background:rgba(34,211,238,0.1);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';color:var(--accent-cyan);font-weight:700;}
+.edu-item h4{font-size:16px;}
+.edu-item p{font-size:13.5px;color:var(--text-muted);margin-top:4px;}
+
+/* ACHIEVEMENTS */
+.ach-list{display:grid;gap:14px;}
+.ach-item{display:flex;gap:16px;padding:20px 22px;}
+.ach-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-amber);margin-top:8px;flex-shrink:0;}
+.ach-item p{font-size:14.5px;color:var(--text-muted);}
+
+/* CONTACT / FOOTER */
+.contact-box{padding:52px;text-align:center;}
+.contact-box h2{margin-bottom:12px;}
+.contact-box p{color:var(--text-muted);margin-bottom:30px;}
+footer{padding:36px 0;text-align:center;color:var(--text-faint);font-size:13px;border-top:1px solid var(--border-glass);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">P<span>.</span>U</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#stats">GitHub</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-tag">● Open to SDE / AI internships</div>
+    <h1>Pranshu Upadhyay builds<br><span class="grad">multi-stage AI pipelines</span> — not single-prompt wrappers.</h1>
+    <div class="hero-role">Software Engineer — AI Systems &amp; Full-Stack</div>
+    <div class="hero-edu mono">B.Tech CSE (AI &amp; Robotics), VIT Chennai · BS Data Science, IIT Madras</div>
+    <p class="hero-intro">3-layer pipeline for RFQ compliance verification. Real-time multiplayer shipped on Firebase. Voice control built across three engineering iterations. 150+ DSA problems solved along the way.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#" id="resume-btn">↓ Download Resume</a>
+      <a class="btn btn-ghost" href="https://github.com/upadhyayPranshu" target="_blank">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/pranshu-upadhyay-6a3969202" target="_blank">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://leetcode.com/u/upadhyayPranshu" target="_blank">LeetCode</a>
+    </div>
+
+    <!-- signature pipeline element -->
+    <div class="pipeline reveal" id="pipeline">
+      <div class="pipeline-connector"></div>
+      <div class="glass pipe-card"><div class="layer-tag">LAYER 0 — PROGRAMMATIC</div><h4>Regex Pre-Check</h4><p>Deterministic numeric comparison, Indian number-system aware (lakh, crore).</p></div>
+      <div class="glass pipe-card"><div class="layer-tag">LAYER 1 — EXTRACT</div><h4>Hybrid Retrieval + LLM</h4><p>Bi-encoder search routes clauses to the right bid pages before extraction.</p></div>
+      <div class="glass pipe-card"><div class="layer-tag">LAYER 2 — JUDGE</div><h4>LLM Compliance Verdict</h4><p>Explicit reasoning on each clause, served locally via Ollama.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About</div>
+    <h2 class="section-title reveal">Systems thinking, applied to AI.</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a Computer Science undergraduate at VIT Chennai (AI &amp; Robotics specialization, CGPA 8.8), concurrently pursuing a BS in Data Science and Programming from IIT Madras. My work sits at the intersection of applied AI and systems engineering — I don't just call an LLM API, I design the pipeline around it: what a cheap regex layer should catch, what needs retrieval, and what actually needs a model's judgment.</p>
+        <p>That thinking shaped my flagship project, an AI RFQ compliance verifier built on a 3-layer evaluation pipeline instead of a single brittle prompt. Beyond AI, I've shipped a real-time multiplayer mobile game on Firebase, a voice-command assistant built across three engineering iterations, and full-stack coursework projects end to end.</p>
+        <div class="focus-tags">
+          <span class="focus-tag">AI Systems</span>
+          <span class="focus-tag">Backend Engineering</span>
+          <span class="focus-tag">Robotics</span>
+          <span class="focus-tag">Full-Stack</span>
+          <span class="focus-tag">Problem Solving</span>
+          <span class="focus-tag">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="about-stats reveal">
+        <div class="glass stat-card"><div class="stat-num">8.8</div><div class="stat-label">CGPA — B.Tech CSE (AI &amp; Robotics), VIT Chennai</div></div>
+        <div class="glass stat-card"><div class="stat-num">3</div><div class="stat-label">Evaluation layers in flagship AI pipeline</div></div>
+        <div class="glass stat-card"><div class="stat-num">150+</div><div class="stat-label">LeetCode problems solved</div></div>
+        <div class="glass stat-card"><div class="stat-num">2028</div><div class="stat-label">Expected graduation</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Technical Skills</div>
+    <h2 class="section-title reveal">What I build with.</h2>
+    <p class="section-sub reveal">Confirmed across shipped repos — nothing listed here that isn't actually in use in the projects below.</p>
+    <div class="skills-grid reveal">
+      <div class="glass skill-card"><h4>Languages</h4><div class="skill-list">
+        <span class="skill-pill">Python</span><span class="skill-pill">Java</span><span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">JavaScript</span><span class="skill-pill">TypeScript</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Frontend</h4><div class="skill-list">
+        <span class="skill-pill">React</span><span class="skill-pill">React Native</span><span class="skill-pill">Vite</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Backend</h4><div class="skill-list">
+        <span class="skill-pill">FastAPI</span><span class="skill-pill">Node.js</span><span class="skill-pill">REST APIs</span>
+      </div></div>
+      <div class="glass skill-card"><h4>AI / ML</h4><div class="skill-list">
+        <span class="skill-pill">LLM Pipeline Design</span><span class="skill-pill">Ollama</span><span class="skill-pill">SentenceTransformers</span><span class="skill-pill">Semantic Search</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Databases</h4><div class="skill-list">
+        <span class="skill-pill">MongoDB</span><span class="skill-pill">Firebase</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Embedded Systems</h4><div class="skill-list">
+        <span class="skill-pill">Arduino</span><span class="skill-pill">FSM Design</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Dev Tools</h4><div class="skill-list">
+        <span class="skill-pill">Git</span><span class="skill-pill">ESLint</span><span class="skill-pill">Prettier</span><span class="skill-pill">Jest</span>
+      </div></div>
+      <div class="glass skill-card"><h4>Cloud &amp; OS</h4><div class="skill-list">
+        <span class="skill-pill">Firebase</span><span class="skill-pill">Windows</span><span class="skill-pill">iOS / Android</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experience</div>
+    <h2 class="section-title reveal">Independent engineering work.</h2>
+    <p class="section-sub reveal">No formal internship yet — these are the projects reframed as the engineering experience they represent.</p>
+
+    <div class="glass exp-item reveal">
+      <div class="exp-head"><div class="exp-title">AI Systems Engineer — AI RFQ Verifier</div><div class="exp-date">2025 – Present</div></div>
+      <ul>
+        <li>Architected a 3-layer AI evaluation pipeline (regex pre-check → LLM extraction → LLM judgment) to verify vendor bids against RFQ clauses</li>
+        <li>Implemented hybrid semantic search with page-level bi-encoder embeddings to route clauses to relevant bid pages before invoking the LLM</li>
+        <li>Built the full stack: React 19 + Vite frontend, FastAPI backend, MongoDB, local LLM inference via Ollama</li>
+        <li>Combined pdfplumber, PyMuPDF, PyPDF2 and Tesseract OCR to handle both text and scanned bid PDFs</li>
+      </ul>
+    </div>
+
+    <div class="glass exp-item reveal">
+      <div class="exp-head"><div class="exp-title">Mobile Developer — Letter Rush</div><div class="exp-date">2025</div></div>
+      <ul>
+        <li>Built a cross-platform multiplayer vocabulary game in React Native + TypeScript with real-time and offline modes</li>
+        <li>Implemented turn-based logic, timers, and a light/dark theme system</li>
+        <li>Configured Firebase for real-time room-based multiplayer sync</li>
+      </ul>
+    </div>
+
+    <div class="glass exp-item reveal">
+      <div class="exp-head"><div class="exp-title">Software Developer — Jarvis Voice Assistant</div><div class="exp-date">2025</div></div>
+      <ul>
+        <li>Designed a voice-command assistant in Python across three incremental development phases</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h2 class="section-title reveal">Ranked by engineering depth, not repo count.</h2>
+    <p class="section-sub reveal">Click any card for the full breakdown — problem, architecture, challenges, and what's next.</p>
+
+    <div class="rank-row reveal"><span class="rank-stars">★★★★★</span><span class="rank-label">Flagship</span></div>
+    <div class="projects-list reveal" id="projects-root"></div>
+  </div>
+</section>
+
+<!-- GITHUB / LEETCODE STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="eyebrow">Coding Profile</div>
+    <h2 class="section-title reveal">Consistent practice, not just projects.</h2>
+    <div class="stats-grid reveal">
+      <div class="glass gh-card"><div class="gh-num">150+</div><div class="gh-label">LeetCode problems solved (C, C++, Java)</div></div>
+      <div class="glass gh-card"><div class="gh-num">6</div><div class="gh-label">Public GitHub repositories</div></div>
+      <div class="glass gh-card"><div class="gh-num">50</div><div class="gh-label">Day LeetCode streak badge, 2025</div></div>
+    </div>
+    <div class="glass skill-card reveal" style="margin-top:20px;">
+      <h4>LeetCode Tag Strength</h4>
+      <div class="tag-bar">
+        <div class="tag-row"><span>Dynamic Programming</span><span>×27</span></div>
+        <div class="tag-row"><span>Array</span><span>×83</span></div>
+        <div class="tag-row"><span>String</span><span>×42</span></div>
+        <div class="tag-row"><span>Backtracking</span><span>×14</span></div>
+        <div class="tag-row"><span>Sorting</span><span>×26</span></div>
+        <div class="tag-row"><span>Divide &amp; Conquer</span><span>×13</span></div>
+        <div class="tag-row"><span>Math</span><span>×24</span></div>
+        <div class="tag-row" style="border-bottom:none;"><span>Greedy</span><span>×18</span></div>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--text-faint);margin-top:16px;">Recommended live widgets on deployment: GitHub contribution graph, top-languages chart, and streak card (e.g. via github-readme-stats), pointed at github.com/upadhyayPranshu.</p>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">Education</div>
+    <h2 class="section-title reveal">Two degrees, one direction.</h2>
+    <div class="glass edu-item reveal">
+      <div class="edu-icon">V</div>
+      <div><h4>B.Tech, Computer Science &amp; Engineering — AI &amp; Robotics</h4><p>VIT Chennai · CGPA 8.8 · Expected 2028</p></div>
+    </div>
+    <div class="glass edu-item reveal">
+      <div class="edu-icon">M</div>
+      <div><h4>BS, Data Science and Programming</h4><p>IIT Madras · Concurrent degree</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="eyebrow">Achievements</div>
+    <h2 class="section-title reveal">Conservatively stated, fully verifiable.</h2>
+    <div class="ach-list reveal">
+      <div class="glass ach-item"><div class="ach-dot"></div><p>Designed and shipped a production-style 3-layer AI verification pipeline combining deterministic logic, hybrid retrieval, and LLM reasoning.</p></div>
+      <div class="glass ach-item"><div class="ach-dot"></div><p>Built and configured a cross-platform (iOS + Android) real-time multiplayer application.</p></div>
+      <div class="glass ach-item"><div class="ach-dot"></div><p>150+ LeetCode problems solved with advanced-tier strength in Dynamic Programming, Backtracking, and Divide &amp; Conquer.</p></div>
+      <div class="glass ach-item"><div class="ach-dot"></div><p>Pursuing two concurrent degrees — VIT Chennai and IIT Madras — while independently shipping full-stack and AI projects.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="glass contact-box reveal">
+      <h2>Let's build something.</h2>
+      <p>Open to SDE / AI internship opportunities — happy to walk through the RFQ Verifier architecture in detail.</p>
+      <div class="btn-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="mailto:pranshuupadhyay180707@gmail.com">Email Me</a>
+        <a class="btn btn-ghost" href="tel:+917078380171">+91 70783 80171</a>
+        <a class="btn btn-ghost" href="https://github.com/upadhyayPranshu" target="_blank">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/pranshu-upadhyay-6a3969202" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Pranshu Upadhyay · Built for the MOTORQ application
+</footer>
+
+<script>
+// scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:0.12});
+revealEls.forEach(el=>io.observe(el));
+
+// pipeline: one-time sequential reveal when scrolled into view (no endless looping)
+const pipeCards = document.querySelectorAll('#pipeline .pipe-card');
+let pipelinePlayed = false;
+const pipelineObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting && !pipelinePlayed){
+      pipelinePlayed = true;
+      pipeCards.forEach((c,i)=>{
+        setTimeout(()=>{ c.classList.add('active'); }, i*450);
+      });
+    }
+  });
+},{threshold:0.4});
+pipelineObserver.observe(document.getElementById('pipeline'));
+
+// resume placeholder
+document.getElementById('resume-btn').addEventListener('click', function(e){
+  e.preventDefault();
+  alert('Add your resume PDF to public/resume.pdf (or replace this link) — no resume file was provided.');
+});
+
+// project case-study data, grouped by rank
+const projectGroups = [
+  { stars:"★★★★★", label:"Flagship", items:[
+    { key:"rfq", initial:"AI", title:"AI RFQ Verifier",
+      summary:"Multi-stage LLM pipeline that verifies vendor bid PDFs against RFQ clauses via hybrid semantic search.",
+      tags:["React 19","FastAPI","MongoDB","Ollama","SentenceTransformers","Tesseract OCR"],
+      problem:"Manually checking vendor bid PDFs against every clause in an RFQ is slow and error-prone, especially for numeric requirements across long documents.",
+      solution:"A 3-layer pipeline: Layer 0 does deterministic regex-based numeric comparison (Indian number-system aware); Layer 1 uses an LLM to extract facts only from bid pages flagged relevant by semantic search; Layer 2 uses an LLM to render a compliance judgment with explicit reasoning.",
+      features:["RFQ creation — manual or PDF upload with clause extraction","Bid submission, resubmission and withdrawal","Hybrid semantic search (bi-encoder page embeddings)","In-browser PDF page viewer","Analytics dashboard","Role-based company/vendor access"],
+      challenges:"Getting numeric compliance checks right across Indian and Western number formats before ever invoking an LLM; keeping page-level embedding search accurate enough to avoid feeding irrelevant pages to the model; handling scanned PDFs via OCR fallback.",
+      future:"Add a re-ranker between retrieval and judgment; vendor-side pre-checks before submission; portfolio-level analytics across multiple RFQs.",
+      link:"https://github.com/upadhyayPranshu/rfq_verifier" }
+  ]},
+  { stars:"★★★★", label:"Strong", items:[
+    { key:"letterrush", initial:"LR", title:"Letter Rush",
+      summary:"Real-time multiplayer vocabulary game with offline mode, built cross-platform.",
+      tags:["React Native","TypeScript","Firebase","Jest"],
+      problem:"Vocabulary games are usually single-player or turn-taking on one device; this builds genuine real-time multiplayer with an offline fallback.",
+      solution:"A React Native app with Firebase-backed real-time rooms, turn-based logic, timers, and a full light/dark theme system.",
+      features:["Real-time multiplayer rooms","Offline multiplayer mode","Light / dark theming","Turn-based timer logic","Animated UI"],
+      challenges:"Keeping multiplayer state in sync in real time while still supporting an offline mode without a rewrite of core game logic.",
+      future:"Public matchmaking, leaderboards, spectator mode.",
+      link:"https://github.com/upadhyayPranshu/vocab_antakshari",
+      note:"Repo currently only has the default React Native CLI README — worth adding a real description and demo clip." },
+    { key:"jarvis", initial:"J", title:"Jarvis Voice Assistant",
+      summary:"Voice-command assistant built across three incremental Python development phases.",
+      tags:["Python","Voice Control"],
+      problem:"Building a voice-command assistant that grows in capability without a rewrite each time.",
+      solution:"Three sequential Python builds (phase 1 → 2 → 3), each layering on more command-handling capability.",
+      features:["Voice command following — exact feature set undocumented in-repo"],
+      challenges:"Incrementally extending command-handling logic across phases without breaking earlier functionality.",
+      future:"Document what each phase adds; expand the command set; add a README with a feature list.",
+      link:"https://github.com/upadhyayPranshu/jarvis",
+      note:"Easiest repo to upgrade for recruiter impact — a short README describing phase 3's capability would help a lot." }
+  ]},
+  { stars:"★★★", label:"Supporting", items:[
+    { key:"dining", initial:"DG", title:"Dining-Guide",
+      summary:"Full-stack course project (WebProg) with separate frontend and backend.",
+      tags:["JavaScript"],
+      problem:"WebProg course assignment — build a full-stack dining/restaurant guide application.",
+      solution:"Separate FrontEnd and BackEnd folders (plus a second 'back' folder, possibly an earlier backend attempt).",
+      features:["Structure implies a full-stack app — no README exists to confirm exact features"],
+      challenges:"Not documented in-repo.",
+      future:"Add a README describing what the app actually does before presenting it to recruiters.",
+      link:"https://github.com/upadhyayPranshu/Dining-Guide",
+      note:"No README currently exists for this repo." }
+  ]}
+];
+
+function caseHTML(p){
+  return `
+    <div class="proj-body-inner">
+      <div class="case-section"><h5>Problem</h5><p>${p.problem}</p></div>
+      <div class="case-section"><h5>Solution</h5><p>${p.solution}</p></div>
+      <div class="case-section"><h5>Features</h5><ul>${p.features.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+      <div class="case-section"><h5>Challenges</h5><p>${p.challenges}</p></div>
+      <div class="case-section"><h5>Future Scope</h5><p>${p.future}</p></div>
+      ${p.note ? `<div class="case-section"><h5>Note</h5><p>${p.note}</p></div>` : ''}
+      <div class="case-section"><a class="proj-link" href="${p.link}" target="_blank">View on GitHub →</a></div>
+    </div>`;
+}
+
+const projectsRoot = document.getElementById('projects-root');
+projectGroups.forEach((group, gi)=>{
+  if(gi > 0){
+    const rankRow = document.createElement('div');
+    rankRow.className = 'rank-row reveal in';
+    rankRow.style.marginTop = '30px';
+    rankRow.innerHTML = `<span class="rank-stars">${group.stars}</span><span class="rank-label">${group.label}</span>`;
+    projectsRoot.appendChild(rankRow);
+  } else {
+    projectsRoot.previousElementSibling.querySelector('.rank-stars').textContent = group.stars;
+    projectsRoot.previousElementSibling.querySelector('.rank-label').textContent = group.label;
+  }
+  group.items.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'glass proj-card';
+    card.innerHTML = `
+      <div class="proj-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="proj-banner-sm">${p.initial}</div>
+        <div class="proj-head-text">
+          <h4>${p.title}</h4>
+          <p>${p.summary}</p>
+          <div class="proj-tags">${p.tags.map(t=>`<span class="proj-tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="proj-chevron">⌄</div>
+      </div>
+      <div class="proj-body">${caseHTML(p)}</div>
+    `;
+    projectsRoot.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>
